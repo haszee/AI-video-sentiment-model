@@ -91,6 +91,7 @@ class MELDDataset(Dataset):
                     '-ac', '1',
                     audio_path
                 ], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            
             waveform, sample_rate = torchaudio.load(audio_path)
 
             if sample_rate != 16000:
