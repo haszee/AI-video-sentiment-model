@@ -1,6 +1,10 @@
 from sagemaker.pytorch import PyTorch
 from sagemaker.debugger import TensorBoardOutputConfig
 
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent
+
 
 def start_training():
     tensorboard_config = TensorBoardOutputConfig(
@@ -10,7 +14,7 @@ def start_training():
 
     estimator = PyTorch(
         entry_point="train.py",
-        source_dir="training",
+        source_dir=str(BASE_DIR / "training"),
         role="your-execution-role",
         framework_version="2.5.1",
         py_version="py311",
