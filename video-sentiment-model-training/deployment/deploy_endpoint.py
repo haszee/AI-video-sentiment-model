@@ -1,6 +1,9 @@
 from sagemaker.pytorch import PyTorchModel
 import sagemaker
 
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent
 
 def deploy_endpoint():
     sagemaker.Session()
@@ -14,7 +17,7 @@ def deploy_endpoint():
         framework_version="2.5.1",
         py_version="py311",
         entry_point="inference.py",
-        source_dir=".",
+        source_dir=str(BASE_DIR),
         name="sentiment-analysis-model",
     )
 
