@@ -17,7 +17,7 @@ def start_training():
     estimator = PyTorch(
         entry_point="train.py",
         source_dir=str(BASE_DIR / "training"),
-        role=os.environ["SAGEMAKER_TRAINING_ROLE_ARN"]
+        role=os.environ["SAGEMAKER_TRAINING_ROLE_ARN"],
         framework_version="2.5.1",
         py_version="py311",
         instance_count=1,
