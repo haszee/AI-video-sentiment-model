@@ -1,15 +1,18 @@
+import os
+from pathlib import Path
+from dotenv import load_dotenv
+
 from sagemaker.pytorch import PyTorchModel
 import sagemaker
 
-from pathlib import Path
-
 BASE_DIR = Path(__file__).resolve().parent
+load_dotenv(BASE_DIR.parent / ".env")
 
 def deploy_endpoint():
     sagemaker.Session()
-    role = "your-deploy-endpoint-role"
+    role = os.environ["SAGEMAKER_DEPLOYMENT_ROLE_ARN"]
 
-    model_uri = "s3://your-bucket-name/inference/model.tar.gz"
+    model_uri = os.environ["SAGEMAKER_MODEL_S3_URI"]
 
     model = PyTorchModel(
         model_data=model_uri,
@@ -24,7 +27,7 @@ def deploy_endpoint():
     predictor = model.deploy(
         initial_instance_count=1,
         instance_type="ml.g5.xlarge",
-        endpoint_name="sentiment-analysis-endpoint",
+        endpoint_name=os.environ["SAGEMAKER_ENDPOINT_NAME"],
     )
 
 
