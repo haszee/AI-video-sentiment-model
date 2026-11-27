@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent
 
 def start_training():
     tensorboard_config = TensorBoardOutputConfig(
-        s3_output_path="s3://your-bucket-name/tensorboard",
+        s3_output_path="s3://${env.AWS_INFERENCE_BUCKET}/tensorboard",
         container_local_output_path="/opt/ml/output/tensorboard"
     )
 
@@ -29,9 +29,9 @@ def start_training():
 
     # Start training
     estimator.fit({
-        "training": "s3://your-bucket-name/dataset/train",
-        "validation": "s3://your-bucket-name/dataset/dev",
-        "test": "s3://your-bucket-name/dataset/test"
+        "training": "s3://${env.AWS_INFERENCE_BUCKET}/dataset/train",
+        "validation": "s3://${env.AWS_INFERENCE_BUCKET}/dataset/dev",
+        "test": "s3://${env.AWS_INFERENCE_BUCKET}/dataset/test"
     })
 
 
