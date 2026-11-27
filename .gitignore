@@ -208,9 +208,38 @@ __marimo__/
 
 .vscode
 
-video-sentiment-model/venv
+# Machine learning
+video-sentiment-model-training/venv/
+video-sentiment-model-training/.venv/
+video-sentiment-model-training/dataset/*
+!video-sentiment-model-training/dataset/README.txt
 
-video-sentiment-model/MELD.Raw.tar.gz
+*.pth
+*.pt
+*.tar.gz
+runs/
 
-video-sentiment-model/dataset
+# Next.js
+node_modules/
+.next/
+out/
+.vercel/
+*.tsbuildinfo
+next-env.d.ts
+
+# Databases
+*.sqlite
+*.sqlite3
+*.sqlite-journal
+*.db
+*.db-journal
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.pyc
 
